@@ -1,23 +1,21 @@
 {
   "name": "farn",
-  "version": "1.0.0",
+  "version": "0.0.2",
+  "private": false,
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/keyserfaty/farn.git"
+    "start": "node server.js",
+    "test": "nodemon server.js",
+    "populatedb": ""
   },
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/keyserfaty/farn/issues"
-  },
-  "homepage": "https://github.com/keyserfaty/farn#readme",
+  "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.14.1",
     "express": "^4.13.3",
-    "mongoose": "^4.2.3"
+    "mongodb": "^1.4.0",
+    "mongoose": "^4.1.6",
+    "morgan": "^1.6.1"
   }
 }
