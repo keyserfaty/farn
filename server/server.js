@@ -1,16 +1,16 @@
 'use strict';
 
 const
-	express = require('express'),
-	app =  express(),
-	bodyParser = require('body-parser'),
-	logger = require('morgan');
+  express = require('express'),
+  app =  express(),
+  bodyParser = require('body-parser'),
+  logger = require('morgan');
 
 const
-	config = require('./config'),
-	router = require('./routes'),
-	middleware = require('./middleware'),
-	db = require('./db.js');
+  config = require('./config'),
+  router = require('./routes'),
+  middleware = require('./middleware'),
+  db = require('./db.js');
 
 app.use(logger('combined'));
 
@@ -20,5 +20,5 @@ app.use(bodyParser.json());
 app.use('/', router);
 
 app.listen(config.site.port, function() {
-	console.log('Basic API listening on port', config.site.port);
+  console.log('Basic API listening on port', config.site.port);
 });

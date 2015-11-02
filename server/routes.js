@@ -1,21 +1,21 @@
 'use strict';
 
 const
-	express = require('express'),
-	router =  express.Router();
+  express = require('express'),
+  router =  express.Router();
 
 router.get('/', function(req, res){
-	res.status(200).send("GET to '/'");
+  res.status(200).send("GET to '/'");
 });
 
 /* 
 Following Ember URL Conventions
 
-Find	GET	/photos/123
-Find All	GET	/photos
-Update	PUT	/photos/123
-Create	POST	/photos
-Delete	DELETE	/photos/123
+Find  GET /photos/123
+Find All  GET /photos
+Update  PUT /photos/123
+Create  POST  /photos
+Delete  DELETE  /photos/123
 */
 
 // router.get('/posts/:_id', posts.get);

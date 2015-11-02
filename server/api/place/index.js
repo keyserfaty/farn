@@ -1,11 +1,11 @@
 'use strict';
 
 const
-	express = require('express'),
-	router =  express.Router();
+  express = require('express'),
+  router =  express.Router();
 
 router.get('/', function(req, res){
-	res.status(200).send("GET to '/api/place'");
+  res.status(200).send("GET to '/api/place'");
 });
 router.get('/place', place.list);
 router.get('/place/:_id', place.get);
