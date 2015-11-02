@@ -17,6 +17,8 @@ const
         userID: String,
         date: { type: Date, default: Date.now }
       },
+		featured: Boolean,
+	},
     checkins: Array
   });
 
