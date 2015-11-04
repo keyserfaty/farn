@@ -17,21 +17,37 @@ exports.list = function (req, res){
     res.status(200).send(place);
   })
   .catch(function(err) {
-        res.status(200).send({ error: 'No data', details: 'No place Found ', message: err.message });
-    });
+    res.status(200).send({ error: 'No data', details: 'No place Found ', message: err.message });
+  });
 
+};
+
+exports.add = function (req, res){
+  let place = new Place(),
+      attributes = JSON.parse(JSON.stringify(req.body));
+
+  place.set(attributes);
+
+  Place.add(place)
+    .then(function(place) {
+      console.log('New place Created:', place);
+      res.status(201).send(place);
+    })
+    .catch(function(err) {
+      res.status(422).send({ error: 'Bad Request', details: 'Place cannot be added.', message: err.message });
+    }); 
 };
 
 exports.get = function (req, res){
   let placeID = req.params._id;
 
-    Place.get(placeID)
-    .then(function (place) {
-        res.send(place);
-    })
-    .catch(function(err) {
-        res.status(404).send({ error: 'Bad Request', details: 'place Not Found.', message: err.message });
-    });
+  Place.get(placeID)
+  .then(function (place) {
+    res.send(place);
+  })
+  .catch(function(err) {
+    res.status(404).send({ error: 'Bad Request', details: 'place Not Found.', message: err.message });
+  });
 };
 
 exports.edit = function (req, res){
@@ -52,23 +68,6 @@ exports.edit = function (req, res){
         res.status(400).send({ error: 'Bad Request', details: 'place cannot be edited, ' + err.message });
     }); 
 };
-
-exports.add = function (req, res){
-  let place = new Place(),
-    attributes = JSON.parse(JSON.stringify(req.body));
-
-  place.set(attributes);
-
-  Place.add(place)
-    .then(function(place) {
-      console.log('New place Created:', place);
-        res.status(201).send(place);
-    })
-    .catch(function(err) {
-        res.status(422).send({ error: 'Bad Request', details: 'place cannot be added.', message: err.message });
-    }); 
-};
-
 
 exports.del = function (req, res){
   let placeID = req.params._id;
