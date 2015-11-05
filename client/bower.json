@@ -1,11 +1,28 @@
 {
   "name": "Farn",
-  "private": "true",
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.1.0",
     "platform.js": "platform#~1.3.0"
   },
   "dependencies": {
-    "ngCordova": "~0.1.20-alpha"
-  }
+    "ngCordova": "~0.1.20-alpha",
+    "leaflet": "~0.7.7"
+  },
+  "homepage": "https://github.com/keyserfaty/farn",
+  "authors": [
+    "Belen Curcio <curciobelen@gmail.com>",
+    "Karen Serfaty <keserfaty@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "www/lib",
+    "test",
+    "tests"
+  ]
 }
