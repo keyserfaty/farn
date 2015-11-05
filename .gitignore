@@ -1,1 +1,5 @@
 /node_modules/
+/client/www/lib/
+
+platforms/
+plugins/
