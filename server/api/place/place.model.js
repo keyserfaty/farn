@@ -60,4 +60,4 @@ PlaceSchema.statics = {
   }
 };
 
-mongoose.model('Place', PlaceSchema);
+module.exports = mongoose.model('Place', PlaceSchema);

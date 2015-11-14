@@ -6,7 +6,12 @@ const
 const
   Schema = mongoose.Schema,
   UserSchema = new Schema({
-    // TODO: comes from Facebook
+    facebookID: String,
+    displayName: String,
+    name: Object,
+    gender: String,
+    profileUrl: String,
+    provider: String
   });
 
 UserSchema.methods = {
@@ -42,4 +47,4 @@ UserSchema.statics = {
   }
 };
 
-mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

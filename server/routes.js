@@ -2,27 +2,24 @@
 
 const
   express = require('express'),
-  router =  express.Router();
+  router =  express.Router(),
+  passport = require('passport'),
+  FacebookStrategy = require('passport-facebook').Strategy;
 
-router.get('/', function(req, res){
-  res.status(200).send("GET to '/'");
-});
+router.use('/api/auth', require('./api/auth'));
 
-/* 
-Following Ember URL Conventions
+// router.use('/api/place', require('./api/place'));
+// router.use('/api/user', require('./api/user'));
 
-Find  GET /photos/123
-Find All  GET /photos
-Update  PUT /photos/123
-Create  POST  /photos
-Delete  DELETE  /photos/123
-*/
 
-// router.get('/posts/:_id', posts.get);
-// router.get('/posts', posts.list);
-// router.put('/posts/:_id', posts.edit);
-// router.post('/posts', posts.add);
-// router.delete('/posts/:_id', posts.del);
+// All undefined asset or api routes should return a 404
+// router.route('/:url(api|auth|components|router|bower_components|assets)/*')
+// .get(errors[404]);
 
+// All other routes should redirect to the index.html
+// router.route('*')
+// .get(function(req, res) {
+//   res.sendFile(path.resolve(app.get('appPath') + '/index.html'));
+// });
 
 module.exports = router;
