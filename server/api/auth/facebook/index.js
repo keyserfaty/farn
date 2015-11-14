@@ -37,7 +37,7 @@ passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
 
-    let userProfile = new User({
+    let userProfile = User({
       facebookID: profile.id,
       displayName: profile.displayName,
       name: profile.name,
@@ -46,15 +46,10 @@ passport.use(new FacebookStrategy({
       provider: profile.provider
     });
 
-    User.findOneAndUpdate({ facebookID: userProfile.facebookID }, userProfile, 
-      function (err, user) {
-      
-      if (!user) {
-        userProfile.save(done);
-        return;
-      }
-
-      // return done(err, userProfile)
+    User.findOneAndUpdate({ facebookID: userProfile.facebookID }, {}, userProfile, 
+    function (err, user) {
+      if (!user) { console.log('Creating user:', userProfile.displayName); userProfile.save(done); return; }
+      user.save(done); console.log('Updating user:', userProfile.displayName); return;
     });
   }
 ));
