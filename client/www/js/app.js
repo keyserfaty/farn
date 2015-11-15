@@ -13,6 +13,7 @@ angular.module('starter', [
   'map.controller',
   'news.controller',
   'login.controller',
+  'login.services',
   'activity.controller'
   ])
 
