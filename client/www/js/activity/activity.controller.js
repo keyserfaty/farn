@@ -20,6 +20,15 @@ angular.module('activity.controller', [])
 			description: 'description',
 			likes: 12,
 			comments: 12
+		},
+				{
+			user: '2do post',
+			date: 'November 15, 2015',
+			thumb: 'img/ionic.png',
+			fullimage: 'img/ionic.png',
+			description: 'description',
+			likes: 12,
+			comments: 12
 		}
 	];
 });
