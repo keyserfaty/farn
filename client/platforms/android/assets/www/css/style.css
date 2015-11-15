@@ -1,1 +1,11 @@
-/* Empty. Add your own CSS if you like */
+body {
+    padding: 0;
+    margin: 0;
+}
+html, body, #map {
+    height: 100%;
+}
+
+#map {
+	height: 500px;
+}

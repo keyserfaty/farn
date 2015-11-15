@@ -25,6 +25,9 @@ angular.module('map.controller', [])
   $http.get('https://api.mapbox.com/v4/' + config.mapid + '/features.json?access_token=' + config.accesstoken)
   .then(function(res){
     var geojsonFeature = res.data.features;
+    geojsonFeature.map(function(feature){
+      console.log(feature.geometry);
+    });
     L.geoJson(geojsonFeature).addTo(map);
   }, function(){
     console.log('error getting markers');

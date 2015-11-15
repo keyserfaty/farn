@@ -11,7 +11,8 @@ angular.module('starter', [
   'slider.controller',
   'slider.services',
   'map.controller',
-  'news.controller'
+  'news.controller',
+  'login.controller'
   ])
 
 .run(function($ionicPlatform) {
@@ -56,6 +57,15 @@ angular.module('starter', [
           'menuContent': {
               templateUrl: 'templates/activity.html',
               controller: 'ActivityCtrl'
+          }
+      }
+  })
+  .state('app.login', {
+      url: '/login',
+      views: {
+          'menuContent': {
+              templateUrl: 'index.html',
+              controller: 'LoginCtrl'
           }
       }
   })
