@@ -1,63 +1,15 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $ionicPopover) {
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  // Form data for the login modal
-  $scope.loginData = {};
-
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
+.controller('ActivityCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
 .controller('GeoCtrl', function($http) {
   var map = L.map('map');
-
 
   var config = {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
@@ -73,12 +25,10 @@ angular.module('starter.controllers', [])
   $http.get('https://api.mapbox.com/v4/' + config.mapid + '/features.json?access_token=' + config.accesstoken)
   .then(function(res){
     var geojsonFeature = res.data.features;
-    console.log(res);
     L.geoJson(geojsonFeature).addTo(map);
   }, function(){
     console.log('error getting markers');
   });
-
 
   // random red circle
   var circle = L.circle([-34.605519, -58.37413699999999], 187, {
@@ -89,20 +39,16 @@ angular.module('starter.controllers', [])
 
   function onLocationFound(e) {
     var radius = e.accuracy / 2;
-
-    L.marker(e.latlng).addTo(map)
-      .bindPopup("Estás a " + radius + " metros de este punto").openPopup();
-
+    L.marker(e.latlng).addTo(map).bindPopup("Estás a " + radius + " metros de este punto").openPopup();
     L.circle(e.latlng, radius).addTo(map);
   }
 
   function onLocationError(e) {
-    alert(e.message);
+    console.log(e.message);
   }
 
   map.on('locationfound', onLocationFound);
   map.on('locationerror', onLocationError);
 
   map.locate({setView: true, maxZoom: 16});
-
 });
