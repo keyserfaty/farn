@@ -14,7 +14,8 @@ const
 	methodOverride = require('method-override');
 
 const 
-  User = require('../../user/user.model');
+  User = require('../../user/user.model'),
+  auth = require('../auth.services');
 
 const 
 	FACEBOOK_APP_ID = '409108149284869',
@@ -43,26 +44,35 @@ passport.use(new FacebookStrategy({
       name: profile.name,
       gender: profile.gender,
       profileUrl: profile.profileUrl,
-      provider: profile.provider
+      provider: profile.provider,
+      token: accessToken
     });
 
     User.findOneAndUpdate({ facebookID: userProfile.facebookID }, {}, userProfile, 
     function (err, user) {
-      if (!user) { console.log('Creating user:', userProfile.displayName); userProfile.save(done); return; }
+      if (!user) { 
+        console.log('Creating user:', userProfile.displayName);
+        userProfile.save(done); 
+        return; 
+      }
       user.save(done); console.log('Updating user:', userProfile.displayName); return;
     });
   }
 ));
 
-// authentication
-router.get('/',
-  passport.authenticate('facebook'));
+router.get('/', passport.authenticate('facebook'));
+  
+router.get('/callback', function(req, res, next) {
+  passport.authenticate('facebook', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('/login'); }
 
-router.get('/callback',
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      let token = auth.signToken({ token: user.token }); 
+      return res.json(token);
+    });
+  })(req, res, next);
+});
 
 module.exports = router;
