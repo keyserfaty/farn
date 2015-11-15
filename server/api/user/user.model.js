@@ -11,7 +11,8 @@ const
     name: Object,
     gender: String,
     profileUrl: String,
-    provider: String
+    provider: String,
+    token: String
   });
 
 UserSchema.methods = {

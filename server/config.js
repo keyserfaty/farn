@@ -7,5 +7,8 @@ module.exports = {
     port: 3000,
   },
   options: {
+  },
+  secrets: {
+  	session: 'test-secret'
   }
 };
