@@ -7,7 +7,7 @@ const
 router.get('/', function(req, res){
   res.status(200).send("GET to '/api/place'");
 });
-router.get('/place', place.list);
+router.get('/', place.list);
 router.post('/place', place.add);
 router.get('/place/:_id', place.get);
 router.put('/place/:_id', place.edit);

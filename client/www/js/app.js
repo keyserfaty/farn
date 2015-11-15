@@ -1,5 +1,16 @@
 
-angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'ngCordova'])
+angular.module('starter', [
+  'ionic', 
+  'ionic-material', 
+  'ngStorage',
+  'ngCordova',
+  'restangular',
+  'starter.controllers', 
+  'main.services'
+  ])
+
+// TODO bower install restangular --save
+// TODO bower install ngStorage --save
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -14,6 +25,11 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'ng
     }
   });
 })
+
+// Restangular setup
+.config(['RestangularProvider', function (RestangularProvider) {
+  RestangularProvider.setBaseUrl("/api")
+}])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -41,14 +57,14 @@ angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers', 'ng
           }
       }
   })
-.state('app.geolocal', {
-    url: '/geolocal',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/geolocal.html',
-        controller: 'GeoCtrl'
+  .state('app.geolocal', {
+      url: '/geolocal',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/geolocal.html',
+          controller: 'GeoCtrl'
+        }
       }
-    }
   });
   
   $urlRouterProvider.otherwise('/app/home');
