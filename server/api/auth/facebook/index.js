@@ -75,7 +75,7 @@ router.get('/callback', function(req, res, next) {
         token: user.token 
       }); 
       // res.redirect('holi')
-      res.redirect('/oauth_token=' + token + '&facebookID=' + user.facebookID);
+      res.redirect('api/auth/facebook/oauth_token=' + token + '&facebookID=' + user.facebookID);
       return;
     });
   })(req, res, next);
