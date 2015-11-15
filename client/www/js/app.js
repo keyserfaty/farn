@@ -4,9 +4,14 @@ angular.module('starter', [
   'ionic-material', 
   'ngStorage',
   'ngCordova',
-  'restangular',
-  'starter.controllers', 
-  'main.services'
+  'restangular', 
+  'main.services',
+  'modal.controller',
+  'modal.services',
+  'slider.controller',
+  'slider.services',
+  'map.controller',
+  'news.controller'
   ])
 
 // TODO bower install restangular --save

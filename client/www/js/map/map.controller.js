@@ -1,12 +1,4 @@
-angular.module('starter.controllers', [])
-
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http, $ionicPopover) {
-
-})
-
-.controller('ActivityCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
-
-})
+angular.module('map.controller', [])
 
 .controller('GeoCtrl', function($http) {
   var map = L.map('map');
