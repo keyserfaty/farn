@@ -64,7 +64,7 @@ angular.module('starter', [
       url: '/login',
       views: {
           'menuContent': {
-              templateUrl: 'index.html',
+              templateUrl: 'templates/login.html',
               controller: 'LoginCtrl'
           }
       }
