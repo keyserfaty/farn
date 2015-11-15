@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('login.controller', [])
-.controller('LoginCtrl', function () {
-	console.log('shit');
-});
+.controller('LoginCtrl', ['loginService', function (loginService) {
+	$scope.login = loginService.login;
+}]);
