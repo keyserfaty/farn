@@ -22,5 +22,4 @@ angular.module('activity.controller', [])
 			comments: 12
 		}
 	];
-	console.log('hola');
 });

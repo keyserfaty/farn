@@ -4,10 +4,6 @@ angular.module('map.controller', [])
 
 })
 
-.controller('ActivityCtrl', function () {
-  
-})
-
 .controller('GeoCtrl', function($http) {
   var map = L.map('map');
 
