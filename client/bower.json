@@ -6,7 +6,9 @@
   },
   "dependencies": {
     "ngCordova": "~0.1.20-alpha",
-    "leaflet": "~0.7.7"
+    "leaflet": "~0.7.7",
+    "restangular": "~1.5.1",
+    "ngstorage": "~0.3.10"
   },
   "homepage": "https://github.com/keyserfaty/farn",
   "authors": [
@@ -24,5 +26,11 @@
     "www/lib",
     "test",
     "tests"
-  ]
+  ],
+  "resolutions": {
+    "angular": ">= 1.2.23",
+    "angular-animate": "1.4.3",
+    "angular-sanitize": "1.4.3",
+    "ionic": "1.1.0"
+  }
 }
