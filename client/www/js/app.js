@@ -12,7 +12,8 @@ angular.module('starter', [
   'slider.services',
   'map.controller',
   'news.controller',
-  'login.controller'
+  'login.controller',
+  'activity.controller'
   ])
 
 .run(function($ionicPlatform) {
