@@ -69,7 +69,12 @@ router.get('/callback', function(req, res, next) {
 
     req.logIn(user, function(err) {
       if (err) { return next(err); }
-      let token = auth.signToken({ token: user.token }); 
+
+      let token = auth.signToken({ 
+        facebookID: user.facebookID, 
+        token: user.token 
+      }); 
+      
       return res.json(token);
     });
   })(req, res, next);
