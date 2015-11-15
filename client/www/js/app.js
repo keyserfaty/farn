@@ -14,9 +14,6 @@ angular.module('starter', [
   'news.controller'
   ])
 
-// TODO bower install restangular --save
-// TODO bower install ngstorage --save
-
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
 

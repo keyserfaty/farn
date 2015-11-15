@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('modal.services', [])
-factory('modal', ['', function(){
+.factory('modal', ['', function(){
 	return function name(){
 		
 	};

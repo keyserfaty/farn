@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('modal.controller', [])
+angular.module('news.controller', [])
 .controller('NewsCtrl', function () {
 
 });

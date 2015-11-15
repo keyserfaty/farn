@@ -1,5 +1,13 @@
 angular.module('map.controller', [])
 
+.controller('AppCtrl', function () {
+
+})
+
+.controller('ActivityCtrl', function () {
+  
+})
+
 .controller('GeoCtrl', function($http) {
   var map = L.map('map');
 
