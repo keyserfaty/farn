@@ -17,7 +17,11 @@ angular.module('starter', [
   'activity.controller'
   ])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope) {
+  
+  window.all = $rootScope; // Expose
+  $rootScope.mapEnabled = 0;
+
   $ionicPlatform.ready(function() {
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -42,8 +46,7 @@ angular.module('starter', [
   .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    templateUrl: 'templates/menu.html'
   })
   .state('app.home', {
     url: '/home',

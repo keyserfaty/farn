@@ -9,3 +9,7 @@ html, body, #map {
 #map {
 	height: 500px;
 }
+
+.hidden {
+	display: none!important;
+}

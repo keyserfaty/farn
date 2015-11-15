@@ -1,10 +1,15 @@
 angular.module('map.controller', [])
 
-.controller('AppCtrl', function () {
+.controller('GeoCtrl', function($http, $rootScope, $scope) {
 
-})
+  $scope.$on("$ionicView.enter", function(event) {
+    $rootScope.mapEnabled = 1;
+  });
 
-.controller('GeoCtrl', function($http) {
+  $scope.$on("$ionicView.leave", function(event) {
+    $rootScope.mapEnabled = 0;
+  });
+
   var map = L.map('map');
 
   var config = {
@@ -21,9 +26,6 @@ angular.module('map.controller', [])
   $http.get('https://api.mapbox.com/v4/' + config.mapid + '/features.json?access_token=' + config.accesstoken)
   .then(function(res){
     var geojsonFeature = res.data.features;
-    geojsonFeature.map(function(feature){
-      console.log(feature.geometry);
-    });
     L.geoJson(geojsonFeature).addTo(map);
   }, function(){
     console.log('error getting markers');
