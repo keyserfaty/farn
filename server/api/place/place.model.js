@@ -25,16 +25,12 @@ const
     images: Array,
     posts: [{
       postID: String,
-      tags: { type: Array, default: '', trim: true },
+      description: String,
+      tag: { type: Array, default: '', trim: true },
       user: String,
       thumb: String,
       fullimage: String,
-      description: String,
-      likes: {
-        number: Number,
-        userID: String,
-        date: { type: Date, default: Date.now }
-      },
+      likes: Number,
       comments: Array,
       featured: Boolean
     }]

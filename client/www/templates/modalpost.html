@@ -6,6 +6,21 @@
     <ion-content>
 
       <div class="list">
+
+        <div class="list" ng-show="showList()">
+
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Lightsaber
+            </div>
+            <select>
+              <option ng-repeat="item in items">{{ item }}
+              </option>
+            </select>
+          </label>
+
+        </div>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">{{ action }}:</span>
           <input type="text" placeholder="content" ng-model="description">

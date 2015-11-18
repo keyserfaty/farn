@@ -55,16 +55,20 @@ angular.module('modal.controller', [])
     $scope.modal = modal;
   });
   
-  $scope.addPost = function (description) {
+  $scope.addPost = function (description, tag) {
     api.place(placeID).get()
     .then(function (place) {
       let currentPlace = place.posts;
 
       let newPost = {
+        description: description,
+        tag: tag,
         user: false,
         thumb: false,
         fullimage: false,
-        description: description
+        likes: 0,
+        comments: [],
+        featured: false
       };
 
       currentPlace.push(newPost);
@@ -78,6 +82,10 @@ angular.module('modal.controller', [])
   $scope.openPostModal = function() {
     $scope.title = 'Add new post to this place';
     $scope.button = 'Save post';
+    $scope.action = 'Content';
+    $scope.showList = function () { return true; }
+    $scope.items = ['Alerta', 'Actividad', 'Comentario', 'Cosa'];
+
     $scope.modal.show();
   };
   
@@ -128,6 +136,7 @@ angular.module('modal.controller', [])
     $scope.title = 'Add new comment';
     $scope.button = 'Save comment';
     $scope.action = 'Comment';
+    $scope.showList = function () { return false; }
     $scope.modal.show();
   };
   
