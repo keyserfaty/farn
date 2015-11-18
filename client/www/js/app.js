@@ -37,6 +37,8 @@ angular.module('starter', [
       StatusBar.styleDefault();
     }
 
+    // TODO this is a test to check if post collection is working 
+
     let json = {
       "type": "FeatureCollection",
       "features": [
@@ -163,10 +165,6 @@ angular.module('starter', [
       ],
       "id": "okbel.o5mboocj"
     };
-
-    console.log('todo bien ')
-
-    // Make POST to places
     api.places().post(json.features);
   });
 
