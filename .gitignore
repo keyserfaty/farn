@@ -1,6 +1,7 @@
 /node_modules/
 /client/www/lib/
 /client/node_modules/
+/server/node_modules/
 
 platforms/
 plugins/
