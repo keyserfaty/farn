@@ -6,6 +6,13 @@ angular.module('activity.controller', [])
   api.places().getList()
   .then(function (places) {
     $scope.places = places;
+    
+    let posts = [];
+    angular.forEach(places, function (place) {
+      posts.concat(place.posts);  
+    })
+    // won't work. foreach is async
+    $scope.posts = posts;
 
     $scope.addPlace = function (name, description, geotag, tag, featured) {
       let newPlace = {
@@ -26,6 +33,7 @@ angular.module('activity.controller', [])
   // 'id' will be read from path where the request is being made
   api.place().get()
   .then(function (place) {
+
     $scope.addPost = function (user, thumb, fullimage, description) {
       /* 'place' refers to the place where the get is being made
         will be used to make a PUT to that path
