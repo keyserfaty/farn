@@ -13,9 +13,9 @@ const
       id: String,
       title: String,
       description: String,
-      marker-size: String,
-      marker-color: String,
-      marker-symbol: String
+      markerSize: String,
+      markerColor: String,
+      markerSymbol: String
     },
     geometry: {
       coordinates: Array
@@ -36,8 +36,7 @@ const
     }]
   });
 
-PlaceSchema.path('geotag').required(true, 'Field geotag cannot be blank');
-PlaceSchema.path('tags').required(true, 'Field tags cannot be blank');
+// PlaceSchema.path('tag').required(true, 'Field tags cannot be blank');
 
 PlaceSchema.methods = {
   verifyPlace: function() {
@@ -59,8 +58,8 @@ PlaceSchema.statics = {
     return query;
   },
   // bulk add
-  insert: function (collection) {
-    return this.collection.insert(collection).exec();
+  insert: function (collection, callback) {
+    return this.collection.insert(collection, callback);
   },
   get: function (placeID) {
     return this.findOne({ _id: placeID }).exec();

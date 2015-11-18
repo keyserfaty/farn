@@ -22,18 +22,11 @@ exports.list = function (req, res){
 
 };
 
-// TODO: okbel is gonna fix this
-exports.insert = function (req, res){
-  collection = req.body.collection;
-  console.log(req.body)
-
-  Place.insert(collection).then(function(collection) {
+// TODO: no error handling
+exports.insert = function (collection){
+  Place.insert(collection, function(collection) {
     res.status(200).send({ details: 'Collection added to db', collection: collection});
-  })
-  .catch(function(err) {
-    res.status(200).send({ error: 'No data', details: 'No bulk collection added', message: err.message });
   });
-
 };
 
 exports.add = function (req, res){

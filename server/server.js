@@ -47,6 +47,9 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 app.use('/', router);
 
+let job = require('./job');
+job.getMap();
+
 app.listen(config.site.port, function() {
   console.log('Basic API listening on port', config.site.port);
 });
