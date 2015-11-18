@@ -41,7 +41,21 @@ angular.module('activity.controller', [])
       // PUT to '/place/:id'
       newPost.put()
     };
-    
+
+    $scope.addLike = function (postID) {
+      let currentPost = place.postID;
+      currentPost = { likes: currentPost.likes++ };
+
+      currentPost.put();
+    };
+
+    $scope.addComment = function (comment) {
+      let currentPost = place.postID;
+      currentPost = { comments: currentPost.comments.push(comment); };
+
+      currentPost.put();
+    };
+
   });
 
 
