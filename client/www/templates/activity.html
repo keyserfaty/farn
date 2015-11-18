@@ -1,37 +1,38 @@
 <ion-view view-title="Actividad">
   <ion-content>
-	<div class="list card" ng-repeat="post in posts">
+	<div class="list card" ng-repeat="post in places.posts">
 
 	  <div class="item item-avatar">
 	    <img ng-src="{{post.thumb}}">
-	    <h2>{{post.user}}</h2>
-	    <p>{{post.date}}</p>
+	    <h2>Name of the place</h2>
+	    <p>{{ post.date }}</p>
 	  </div>
 
 	  <div class="item item-body">
-	    <img class="full-image" ng-src="{{post.fullimage}}">
+	    <!-- <img class="full-image" ng-src="{{post.fullimage}}"> -->
 	    <p>
 			{{post.description}}
 	    </p>
 	    <p>
-	      <a href="#" class="subdued">{{post.likes}} <i class="icon ion-heart"></i> </a>
-	      <a href="#" class="subdued">{{post.comments}} Comentarios</a>
+	      <a href="#" class="subdued">{{post.likes.number}} 
+	      <i class="icon ion-heart"></i> </a>
+	      <a href="#" class="subdued">{{post.comments.length}} Comentarios</a>
 	    </p>
 	  </div>
 
 	  <div class="item tabs tabs-secondary tabs-icon-left">
 	    <a class="tab-item" href="#">
-	      <i class="icon ion-thumbsup"></i>
+	      <i class="icon ion-thumbsup" ng-click="addLike()"></i>
 	      Me Gusta!
 	    </a>
-	    <a class="tab-item" href="#">
-	      <i class="icon ion-chatbox"></i>
+	    <a class="tab-item" href="#" ng-controller="ModalCommentCtrl">
+	      <i class="icon ion-chatbox" ng-click="openModal(post.postID)"></i>
 	      Comentar
 	    </a>
-	    <a class="tab-item" href="#">
+	   <!-- <a class="tab-item" href="#">
 	      <i class="icon ion-share"></i>
 	      Compartir
-	    </a>
+	    </a> -->
 	  </div>
 
 	</div>

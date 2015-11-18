@@ -38,43 +38,46 @@ angular.module('starter', [
     }
   });
 
-  // Create Map
-  let map = L.map('map');
+  // // Create Map
+  // let map = L.map('map');
 
-  // Config Map
-  let config = {
-      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-      '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-      'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-      mapid: 'okbel.o5mboocj',
-      accesstoken: 'pk.eyJ1Ijoib2tiZWwiLCJhIjoiY2lnbWNjbzQ3MDIxMHVubHp3dGVwbXVnaSJ9.SjPEGzzlgpvcmR_OaziFmw',
-  };
+  // // Config Map
+  // let config = {
+  //     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+  //     '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+  //     'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+  //     mapid: 'okbel.o5mboocj',
+  //     accesstoken: 'pk.eyJ1Ijoib2tiZWwiLCJhIjoiY2lnbWNjbzQ3MDIxMHVubHp3dGVwbXVnaSJ9.SjPEGzzlgpvcmR_OaziFmw',
+  // };
 
-  L.tileLayer('https://api.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={accesstoken}', config).addTo(map);
+  // L.tileLayer('https://api.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={accesstoken}', config).addTo(map);
   
-  // Markers
-  $http.get('https://api.mapbox.com/v4/' + config.mapid + '/features.json?access_token=' + config.accesstoken)
-  .then(function (res) {
-      let geojsonFeature = res.data.features;
-      L.geoJson(geojsonFeature).addTo(map);
+  // // Markers
+  // $http.get('https://api.mapbox.com/v4/' + config.mapid + '/features.json?access_token=' + config.accesstoken)
+  // .then(function (res) {
+  //     let geojsonFeature = res.data.features;
+  //     L.geoJson(geojsonFeature).addTo(map);
 
-      // Make POST to places
-      api.places().getList()
-      .then(function (places) {
-        places.post(geojsonFeature);
-      });
+  //     // Make POST to places
+  //     // api.places().getList()
+  //     // .then(function (places) {
+  //     //   places.post(geojsonFeature);
+  //     // });
 
-  }, function(){
-      console.log('error getting markers');
-  });
-})
+  // }, function(){
+  //     console.log('error getting markers');
+  // });
+
+}])
 
 // Restangular setup
 .config(['RestangularProvider', function (RestangularProvider) {
   RestangularProvider.setBaseUrl("/api")
 }])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider',  
+  function($stateProvider, $urlRouterProvider) {
+
   $stateProvider
 
   .state('app', {
@@ -119,4 +122,4 @@ angular.module('starter', [
   });
   
   $urlRouterProvider.otherwise('/app/home');
-});
+}]);

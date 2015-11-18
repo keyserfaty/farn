@@ -1,6 +1,7 @@
 angular.module('map.controller', ['ionic'])
 
-.controller('GeoCtrl', function($http, $rootScope, $scope, $ionicModal) {
+.controller('GeoCtrl', ['api', '$http', '$rootScope', '$scope', '$ionicModal',
+  function (api, $http, $rootScope, $scope, $ionicModal) {
 
     // Event handlers
     $scope.$on("$ionicView.enter", function(event) {
@@ -24,17 +25,6 @@ angular.module('map.controller', ['ionic'])
     };
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={accesstoken}', config).addTo(map);
-    
-    $ionicModal.fromTemplateUrl('place-modal.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function(modal) {
-        $scope.modal = modal;
-    });
-
-    $scope.openModal = function() {
-        $scope.modal.show();
-    };
 
     // Markers
     $http.get('https://api.mapbox.com/v4/' + config.mapid + '/features.json?access_token=' + config.accesstoken)
@@ -59,4 +49,7 @@ angular.module('map.controller', ['ionic'])
     map.on('locationerror', onLocationError);
 
     map.locate({setView: true, maxZoom: 16});
-});
+
+    // TODO i need to add an action to click on marker. where?
+
+}]);
