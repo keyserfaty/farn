@@ -29,15 +29,9 @@ angular.module('activity.controller', [])
 
   });
 
-  // GET to '/place/:id'
-  // 'id' will be read from path where the request is being made
-  api.place().get()
-  .then(function (place) {
-
-    $scope.addPost = function (user, thumb, fullimage, description) {
-      /* 'place' refers to the place where the get is being made
-        will be used to make a PUT to that path
-      */
+  $scope.addPost = function (placeID, user, thumb, fullimage, description) {
+    api.place(placeID).get()
+    .then(function (place) {
       let currentPlace = place.posts;
 
       let newPost = {
@@ -51,7 +45,26 @@ angular.module('activity.controller', [])
 
       // PUT to '/place/:id'
       place.put()
-    };
+      
+    })
+  };
+
+  $scope.showPlace = function (placeID) {
+    api.place(placeID).get()
+    .then(function (place) {
+      $scope.name = place.properties.title;
+      $scope.description = place.properties.description;
+      $scope.images = place.images[0];
+    });
+  };
+
+
+  api.place().get()
+  .then(function (place) {
+
+    /* 'place' refers to the place where the get is being made
+      will be used to make a PUT to that path
+    */
 
     $scope.addLike = function (postID) {
       let 

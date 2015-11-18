@@ -21,9 +21,9 @@ angular.module('main.services', [])
       // '/'
   		return HeaderRestangular.all('place');
   	},
-  	place: function () {
+  	place: function (id) {
       // '/place/:id'
-  		return HeaderRestangular.one('place', $routeParams._id);
+  		return HeaderRestangular.one('place', id);
   	},
     users: function () {
       return HeaderRestangular.all('user');

@@ -6,14 +6,25 @@ const
 const
   Schema = mongoose.Schema,
   PlaceSchema = new Schema({
-    name: String,
-    description: String,
+    // mapbox defined
+    type: String,
+    properties: {
+      id: String,
+      title: String,
+      description: String,
+      marker-size: String,
+      marker-color: String,
+      marker-symbol: String
+    },
+    geometry: {
+      coordinates: Array
+    },
+    type: String,
+    // farn defined
     images: Array,
-    geotag: { type: String, default: '', trim: true },
-    tags: { type: Array, default: '', trim: true },
-    checkins: Array,
     posts: [{
       postID: String,
+      tags: { type: Array, default: '', trim: true },
       user: String,
       thumb: String,
       fullimage: String,
@@ -27,8 +38,6 @@ const
       featured: Boolean
     }]
   });
-
-  // TODO: better way to display likes?
 
 PlaceSchema.path('geotag').required(true, 'Field geotag cannot be blank');
 PlaceSchema.path('tags').required(true, 'Field tags cannot be blank');
