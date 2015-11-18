@@ -14,7 +14,8 @@ const
   config = require('./config'),
   router = require('./routes'),
   middleware = require('./middleware'),
-  db = require('./db.js');
+  db = require('./db'),
+  job = require('./job');
 
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
@@ -47,8 +48,8 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 app.use('/', router);
 
-let job = require('./job');
-job.getMap();
+// job that brings markers from mapbox
+// job.getMap();
 
 app.listen(config.site.port, function() {
   console.log('Basic API listening on port', config.site.port);

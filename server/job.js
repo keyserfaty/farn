@@ -15,10 +15,11 @@ let config = {
 exports.getMap = function () {
   request('https://api.mapbox.com/v4/' + config.mapid + '/features.json?access_token=' + config.accesstoken, 
     function (error, response, collection) {
+    
     if (!error && response.statusCode == 200) {
       Place.insert(JSON.parse(collection).features);
       console.log('Collection added to db successfully');
-      return:
+      return;
     }
 
     console.log('There has been an error');

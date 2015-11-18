@@ -4,7 +4,7 @@ const
   mongoose = require('mongoose');
 
 const
-  Place = mongoose.model('Place');
+  Place = require('./place.model');
 
 mongoose.Promise = global.Promise; // ES6 mongoose implementation
 

@@ -13,9 +13,9 @@ const
       id: String,
       title: String,
       description: String,
-      markerSize: String,
-      markerColor: String,
-      markerSymbol: String
+      'marker-size': String,
+      'marker-color': String,
+      'marker-symbol': String
     },
     geometry: {
       coordinates: Array

@@ -6,12 +6,12 @@ const
   passport = require('passport'),
   FacebookStrategy = require('passport-facebook').Strategy;
 
-router.use('/api/auth', require('./api/auth'));
+// router.use('/api/auth', require('./api/auth'));
 
 // router.use('/api/auth/*', function (req, res){
 // 	console.log(req.params);
 // });
-// router.use('/api/place', require('./api/place'));
+router.use('/api/place', require('./api/place'));
 // router.use('/api/user', require('./api/user'));
 
 
