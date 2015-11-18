@@ -26,10 +26,11 @@ angular.module('activity.controller', [])
   // 'id' will be read from path where the request is being made
   api.place().get()
   .then(function (place) {
-    $scope.addPost = function (place, user, thumb, fullimage, description) {
+    $scope.addPost = function (user, thumb, fullimage, description) {
       /* 'place' refers to the place where the get is being made
         will be used to make a PUT to that path
       */
+      let currentPlace = place.posts;
 
       let newPost = {
         user: false,
@@ -38,22 +39,34 @@ angular.module('activity.controller', [])
         description: description
       };
 
+      currentPlace.push(newPost);
+
       // PUT to '/place/:id'
-      newPost.put()
+      place.put()
     };
 
     $scope.addLike = function (postID) {
-      let currentPost = place.postID;
-      currentPost = { likes: currentPost.likes++ };
+      let 
+        postsList = place.posts,
+        postIndex = postList.indexOf(postsList.postID);
 
-      currentPost.put();
+      if (postIndex !== -1) {
+        postList[postIndex].likes.number++;
+      }
+      // should work
+      postsList.put();
     };
 
-    $scope.addComment = function (comment) {
-      let currentPost = place.postID;
-      currentPost = { comments: currentPost.comments.push(comment); };
+    $scope.addComment = function (postID, comment) {
+      let 
+        postsList = place.posts,
+        postIndex = postList.indexOf(postsList.postID);
 
-      currentPost.put();
+      if (postIndex !== -1) {
+        postList[postIndex].comments.push(comment);
+      }
+      // should work
+      postsList.put();
     };
 
   });

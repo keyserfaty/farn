@@ -11,16 +11,21 @@ const
     images: Array,
     geotag: { type: String, default: '', trim: true },
     tags: { type: Array, default: '', trim: true },
-    posts: {
-      body: String,
+    checkins: Array,
+    posts: [{
+      postID: String,
+      user: String,
+      thumb: String,
+      fullimage: String,
+      description: String,
       likes: {
+        number: Number,
         userID: String,
         date: { type: Date, default: Date.now }
       },
-      comments: Array
-		featured: Boolean,
-	},
-    checkins: Array
+      comments: Array,
+      featured: Boolean
+    }]
   });
 
   // TODO: better way to display likes?
