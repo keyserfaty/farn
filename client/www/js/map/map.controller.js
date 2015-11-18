@@ -25,13 +25,24 @@ angular.module('map.controller', ['ionic'])
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={accesstoken}', config).addTo(map);
     
+    $ionicModal.fromTemplateUrl('place-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });
+
+    $scope.openModal = function() {
+        $scope.modal.show();
+    };
+
     // Markers
     $http.get('https://api.mapbox.com/v4/' + config.mapid + '/features.json?access_token=' + config.accesstoken)
     .then(function(res){
         var geojsonFeature = res.data.features;
         L.geoJson(geojsonFeature).addTo(map);
     }, function(){
-        console.log('error getting markers');
+        console.log('Error getting markers');
     });
 
     function onLocationFound(e) {
