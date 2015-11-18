@@ -2,16 +2,17 @@
 
 angular.module('main.services', [])
 
-.factory('HeaderRestangular', ['Restangular', '$localStorage', function (Restangular, $localStorage) {
+// TODO: add header to every request when there is a token present
+// .factory('HeaderRestangular', ['Restangular', '$localStorage', function (Restangular, $localStorage) {
 
-  return Restangular.withConfig(function (RestangularConfigurer) {
-    // TODO: save token to localStorage from cb end
-    if ($localStorage.token !== undefined) {
-      RestangularConfigurer.setDefaultHeaders({'Authorization': 'Bearer ' + $localStorage.token });
-    }
+//   return Restangular.withConfig(function (RestangularConfigurer) {
+//     // TODO: save token to localStorage from cb end
+//     if ($localStorage.token !== undefined) {
+//       RestangularConfigurer.setDefaultHeaders({'Authorization': 'Bearer ' + $localStorage.token });
+//     }
 
-  });
-}])
+//   });
+// }])
 
 .factory('api', ['HeaderRestangular', '$routeParams', function (HeaderRestangular, $routeParams) {
 
