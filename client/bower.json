@@ -10,7 +10,8 @@
     "restangular": "~1.5.1",
     "ngstorage": "~0.3.10",
     "ionic-material": "~0.4.2",
-    "jquery": "~2.1.4"
+    "jquery": "~2.1.4",
+    "angular-route": "~1.4.7"
   },
   "homepage": "https://github.com/keyserfaty/farn",
   "authors": [

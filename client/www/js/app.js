@@ -2,8 +2,10 @@
 angular.module('starter', [
   'ionic', 
   'ionic-material', 
+  'ui.router',
   'ngStorage',
   'ngCordova',
+  'ngRoute',
   'restangular', 
   'main.services',
   'modal.controller',
