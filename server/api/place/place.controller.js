@@ -22,6 +22,19 @@ exports.list = function (req, res){
 
 };
 
+// TODO: okbel is gonna fix this
+exports.post = function (req, res){
+  criteria = req.query;
+
+  Place.post().then(function(place) {
+    res.status(200).send(place);
+  })
+  .catch(function(err) {
+    res.status(200).send({ error: 'No data', details: 'No place Found ', message: err.message });
+  });
+
+};
+
 exports.add = function (req, res){
   let place = new Place(),
       attributes = JSON.parse(JSON.stringify(req.body));

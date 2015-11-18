@@ -7,6 +7,7 @@ const
   Schema = mongoose.Schema,
   PlaceSchema = new Schema({
     // mapbox defined
+    placeID: String,
     type: String,
     properties: {
       id: String,
@@ -60,6 +61,10 @@ PlaceSchema.statics = {
     } 
 
     return query;
+  },
+  // okbel is gonna fix this: the return
+  post: function () {
+    return this.find().exec();
   },
   get: function (placeID) {
     return this.findOne({ _id: placeID }).exec();
