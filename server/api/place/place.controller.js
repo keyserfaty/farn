@@ -23,14 +23,15 @@ exports.list = function (req, res){
 };
 
 // TODO: okbel is gonna fix this
-exports.post = function (req, res){
-  criteria = req.query;
+exports.insert = function (req, res){
+  collection = req.body.collection;
+  console.log(req.body)
 
-  Place.post().then(function(place) {
-    res.status(200).send(place);
+  Place.insert(collection).then(function(collection) {
+    res.status(200).send({ details: 'Collection added to db', collection: collection});
   })
   .catch(function(err) {
-    res.status(200).send({ error: 'No data', details: 'No place Found ', message: err.message });
+    res.status(200).send({ error: 'No data', details: 'No bulk collection added', message: err.message });
   });
 
 };

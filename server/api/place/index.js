@@ -5,13 +5,13 @@ const
   router =  express.Router();
 
 const 
-  auth = require('../auth/auth.services');
+  place = require('./place.controller');
 
 router.get('/', function(req, res){
   res.status(200).send("GET to '/api/place'");
 });
 router.get('/', place.list);
-router.post('/', place.post);
+router.post('/', place.insert);
 router.post('/place', place.add);
 router.get('/place/:_id', place.get);
 router.put('/place/:_id', place.edit);

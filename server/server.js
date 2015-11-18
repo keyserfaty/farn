@@ -18,10 +18,28 @@ const
 
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser()); // get information from html forms
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(express.static('client'));
+app.use(/\.*/, function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+    res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
+        // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+      res.status(200).send({ options: true });
+    }
+    else {
+      next();
+    }
+});
 // required for passport
-app.use(session({ secret: 'test-secret' })); // session secret
+app.use(session({
+    secret: 'test-secret',
+    proxy: true,
+    resave: true,
+    saveUninitialized: true
+})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session

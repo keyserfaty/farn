@@ -26,7 +26,7 @@ const
     posts: [{
       postID: String,
       description: String,
-      tag: { type: Array, default: '', trim: true },
+      tag: { type: String, default: '', trim: true },
       user: String,
       thumb: String,
       fullimage: String,
@@ -58,9 +58,9 @@ PlaceSchema.statics = {
 
     return query;
   },
-  // okbel is gonna fix this: the return
-  post: function () {
-    return this.find().exec();
+  // bulk add
+  insert: function (collection) {
+    return this.collection.insert(collection).exec();
   },
   get: function (placeID) {
     return this.findOne({ _id: placeID }).exec();
