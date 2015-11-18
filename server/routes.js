@@ -6,7 +6,7 @@ const
   passport = require('passport'),
   FacebookStrategy = require('passport-facebook').Strategy;
 
-// router.use('/api/auth', require('./api/auth'));
+router.use('/api/auth', require('./api/auth'));
 
 // router.use('/api/auth/*', function (req, res){
 // 	console.log(req.params);

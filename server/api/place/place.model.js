@@ -20,7 +20,6 @@ const
     geometry: {
       coordinates: Array
     },
-    type: String,
     // farn defined
     images: Array,
     posts: [{

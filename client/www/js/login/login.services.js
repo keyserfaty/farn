@@ -9,8 +9,14 @@ angular.module('login.services', [])
 
   return {
     login: function () {
-      loginWindow = $window.open(url, '_blank');
-      loginWindow.addEventListener('loadstart', function (event) {
+      $rootScope.loginWindow = $window.open(url, '_blank');
+
+      // loginWindow.$on('loadstart', function (e) {
+      //   console.log('gets here')
+        
+      // })
+
+      $rootScope.loginWindow.addEventListener('loadstart', function (event) {
         hasToken = event.url.indexOf('/oauth_token=');
         hasFacebookID = event.url.indexOf('&facebookID=');
 

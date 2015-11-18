@@ -74,7 +74,7 @@ router.get('/callback', function(req, res, next) {
         facebookID: user.facebookID, 
         token: user.token 
       }); 
-      res.redirect(token)
+      res.status(200).send(token)
       // return res.redirect('/oauth_token=' + token + '&facebookID=' + user.facebookID);
     });
   })(req, res, next);

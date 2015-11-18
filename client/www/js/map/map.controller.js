@@ -25,10 +25,9 @@ angular.module('map.controller', ['ionic'])
               mapid: 'okbel.o5mboocj',
               accesstoken: 'pk.eyJ1Ijoib2tiZWwiLCJhIjoiY2lnbWNjbzQ3MDIxMHVubHp3dGVwbXVnaSJ9.SjPEGzzlgpvcmR_OaziFmw',
               };
-              
+
         L.tileLayer('https://api.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={accesstoken}', config).addTo(map);
-        L.geoJson(places).addTo(map);
-        console.log(places)
+        L.geoJson(places).addTo(map); 
 
         function onLocationFound(e) {
             var radius = e.accuracy / 2;
