@@ -19,7 +19,7 @@ const
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
-
+app.use(express.static('client'));
 // required for passport
 app.use(session({ secret: 'test-secret' })); // session secret
 app.use(passport.initialize());

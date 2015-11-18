@@ -8,9 +8,9 @@ const
 
 router.use('/api/auth', require('./api/auth'));
 
-router.use('/api/auth/facebook/*', function (req, res){
-	console.log(req.params);
-});
+// router.use('/api/auth/*', function (req, res){
+// 	console.log(req.params);
+// });
 // router.use('/api/place', require('./api/place'));
 // router.use('/api/user', require('./api/user'));
 
