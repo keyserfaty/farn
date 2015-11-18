@@ -5,6 +5,31 @@ angular.module('map.controller', ['ionic'])
 .controller('GeoCtrl', ['api', '$http', '$rootScope', '$scope', '$ionicModal',
   function (api, $http, $rootScope, $scope, $ionicModal) {
 
+    // Modal handler
+    $ionicModal.fromTemplateUrl('modalmarker.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function (modal) {
+      $scope.modal = modal;
+    });
+
+    $scope.openModal = function(placeID) {
+      api.place(placeID).get()
+      .then(function (place) {
+        // TODO: should bring placeID from map html
+        $scope.name = place.properties.title;
+        $scope.description = place.properties.description;
+        $scope.images = place.images[0];
+        $scope.button = 'Add new post on this place';
+        // brings modal
+        $scope.modal.show();
+      });
+    };
+
+    $scope.closeModal = function() {
+      $scope.modal.hide();
+    };
+
     // Event handlers
     $scope.$on("$ionicView.enter", function(event) {
         $rootScope.mapEnabled = 1;
