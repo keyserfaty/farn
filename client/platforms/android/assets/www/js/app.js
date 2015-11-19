@@ -1,9 +1,12 @@
+'use strict';
 
 angular.module('starter', [
   'ionic', 
   'ionic-material', 
+  'ui.router',
   'ngStorage',
   'ngCordova',
+  'ngRoute',
   'restangular', 
   'main.services',
   'modal.controller',
@@ -17,7 +20,8 @@ angular.module('starter', [
   'activity.controller'
   ])
 
-.run(function($ionicPlatform, $rootScope) {
+.run(['$ionicPlatform', '$rootScope', 'api',
+  function($ionicPlatform, $rootScope, api) {
   
   window.all = $rootScope; // Expose
   $rootScope.mapEnabled = 0;
@@ -32,29 +36,26 @@ angular.module('starter', [
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
+
   });
-})
+
+
+}])
 
 // Restangular setup
 .config(['RestangularProvider', function (RestangularProvider) {
-  RestangularProvider.setBaseUrl("/api")
+  RestangularProvider.setBaseUrl("http://localhost:3000/api")
 }])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider',  
+  function($stateProvider, $urlRouterProvider) {
+
   $stateProvider
 
   .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html'
-  })
-  .state('app.home', {
-    url: '/home',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/home.html'
-      }
-    }
   })
   .state('app.activity', {
       url: '/activity',
@@ -84,5 +85,5 @@ angular.module('starter', [
       }
   });
   
-  $urlRouterProvider.otherwise('/app/home');
-});
+  $urlRouterProvider.otherwise('/app/geolocal');
+}]);

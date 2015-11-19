@@ -8,32 +8,114 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
+
+      <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-funnel" ng-class="!mapEnabled ? 'hidden' : ''" menu-toggle="right">
+        </button>
+      </ion-nav-buttons>
+
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+      <h1 class="title">Menu</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
         <ion-item menu-close href="#/app/geolocal">
-          Geolocal
+          Mapa
         </ion-item>
-        <ion-item menu-close ng-click="login()">
+        <ion-item menu-close href="#/app/activity">
+          Actividad
+        </ion-item>
+<!--         <ion-item menu-close href="#/app/login">
           Login
-        </ion-item>
-        <ion-item menu-close href="#/app/search">
-          Search
-        </ion-item>
-        <ion-item menu-close href="#/app/browse">
-          Browse
-        </ion-item>
-        <ion-item menu-close href="#/app/playlists">
-          Playlists
-        </ion-item>
+        </ion-item> -->
       </ion-list>
+    </ion-content>
+  </ion-side-menu>
+
+  <ion-side-menu side="right">
+    <ion-header-bar class="bar-stable">
+      <h1 class="title">Filtros Mapa</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ul class="list">
+        <li class="item item-toggle">
+           Cestos
+           <label class="toggle toggle-assertive">
+             <input type="checkbox">
+             <div class="track">
+               <div class="handle"></div>
+             </div>
+           </label>
+        </li>
+                <li class="item item-toggle">
+           Baños
+           <label class="toggle toggle-assertive">
+             <input type="checkbox">
+             <div class="track">
+               <div class="handle"></div>
+             </div>
+           </label>
+        </li>
+                <li class="item item-toggle">
+           Bebedero
+           <label class="toggle toggle-assertive">
+             <input type="checkbox">
+             <div class="track">
+               <div class="handle"></div>
+             </div>
+           </label>
+        </li>
+        <li class="item item-toggle">
+         Puesto de Información
+         <label class="toggle toggle-calm">
+           <input type="checkbox">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+        </li>
+        <li class="item item-toggle">
+         Teléfonos
+         <label class="toggle toggle-calm">
+           <input type="checkbox">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+        </li>
+        <li class="item item-toggle">
+         Atracciones
+         <label class="toggle toggle-calm">
+           <input type="checkbox">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+        </li>
+        <li class="item item-toggle">
+         Avisos
+         <label class="toggle toggle-calm">
+           <input type="checkbox">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+        </li>
+        <li class="item item-toggle">
+         Contribuciones
+         <label class="toggle toggle-calm">
+           <input type="checkbox">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+        </li>
+        </ul>
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>

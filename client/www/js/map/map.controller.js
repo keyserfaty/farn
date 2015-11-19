@@ -51,6 +51,15 @@ angular.module('map.controller', ['ionic'])
       zoom: 13
     });
 
+    var config = {
+      mapid: 'okbel.o5mboocj',
+      accesstoken: 'pk.eyJ1Ijoib2tiZWwiLCJhIjoiY2lnbWNjbzQ3MDIxMHVubHp3dGVwbXVnaSJ9.SjPEGzzlgpvcmR_OaziFmw',
+    };
+
+    L.mapbox.tileLayer('mapbox.streets', {
+      format: 'jpg70'
+    }).addTo(map);
+
     var myLayer = L.mapbox.featureLayer().addTo(map);
 
     map.on('locationfound', onLocationFound);

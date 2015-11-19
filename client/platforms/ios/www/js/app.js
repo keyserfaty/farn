@@ -1,82 +1,80 @@
-// Ionic Starter App
+'use strict';
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
+angular.module('starter', [
+  'ionic', 
+  'ionic-material', 
+  'ui.router',
+  'ngStorage',
+  'ngCordova',
+  'ngRoute',
+  'restangular', 
+  'main.services',
+  'modal.controller',
+  'modal.services',
+  'slider.controller',
+  'slider.services',
+  'map.controller',
+  'news.controller',
+  'login.controller',
+  'login.services',
+  'activity.controller'
+  ])
 
-.run(function($ionicPlatform) {
+.run(['$ionicPlatform', '$rootScope', 'api',
+  function($ionicPlatform, $rootScope, api) {
+  
+  window.all = $rootScope; // Expose
+  $rootScope.mapEnabled = 0;
+
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
+
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
 
     }
     if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-  });
-})
 
-.config(function($stateProvider, $urlRouterProvider) {
+  });
+
+
+}])
+
+// Restangular setup
+.config(['RestangularProvider', function (RestangularProvider) {
+  RestangularProvider.setBaseUrl("http://localhost:3000/api")
+}])
+
+.config(['$stateProvider', '$urlRouterProvider',  
+  function($stateProvider, $urlRouterProvider) {
+
   $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    templateUrl: 'templates/menu.html'
   })
-
-  .state('app.home', {
-    url: '/home',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/home.html'
-      }
-    }
-  })
-  .state('app.search', {
-    url: '/search',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/search.html'
-      }
-    }
-  })
-
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.activity', {
+      url: '/activity',
       views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
+          'menuContent': {
+              templateUrl: 'templates/activity.html',
+              controller: 'ActivityCtrl'
+          }
       }
-    })
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
-
-  .state('app.single', {
-    url: '/playlists/:playlistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
-      }
-    }
   })
-
+  .state('app.login', {
+      url: '/login',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/login.html',
+              controller: 'LoginCtrl'
+          }
+      }
+  })
   .state('app.geolocal', {
       url: '/geolocal',
       views: {
@@ -85,7 +83,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
           controller: 'GeoCtrl'
         }
       }
-    });
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
-});
+  });
+  
+  $urlRouterProvider.otherwise('/app/geolocal');
+}]);
