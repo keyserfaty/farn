@@ -57,14 +57,6 @@ angular.module('starter', [
     abstract: true,
     templateUrl: 'templates/menu.html'
   })
-  .state('app.home', {
-    url: '/home',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/home.html'
-      }
-    }
-  })
   .state('app.activity', {
       url: '/activity',
       views: {
@@ -93,5 +85,5 @@ angular.module('starter', [
       }
   });
   
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/app/geolocal');
 }]);
