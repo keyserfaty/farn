@@ -62,7 +62,34 @@ angular.module('map.controller', ['ionic'])
     .then(function(res){
       var geojsonFeature = res.data.features;
       L.geoJson(geojsonFeature).addTo(map).on('click', function(elem){
-        $scope.openModal();
+
+          var _modal = '';
+
+          $ionicModal.fromTemplateUrl('modalmarker.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+          }).then(function (modal) {
+            _modal = modal;
+          });
+
+          function openModal (placeID) {
+          api.place(placeID).get()
+          .then(function (place) {
+            // TODO: should bring placeID from map html
+            // $scope.name = place.properties.title;
+            // $scope.description = place.properties.description;
+            // $scope.images = place.images[0];
+
+            $scope.name = 'title';
+            $scope.description = 'La Laguna de las Gaviotas era antiguamente un espejo de agua comunicado a la laguna Las Tunas del Medio por un canal aliviador. Hoy, año 2.007, después de las inundaciones que hicieron que todos los espejos de agua cercanos';
+            $scope.image = '../../img/image.jpg';
+            $scope.button = 'Add new post on this place';
+            // brings modal
+            _modal.show();
+            });
+          };
+
+          openModal();
       })
     }, function(err){
       console.log('Error getting markers', err);
