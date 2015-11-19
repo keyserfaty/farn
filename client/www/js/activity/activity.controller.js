@@ -38,31 +38,37 @@ angular.module('activity.controller', [])
 
   $scope.posts = [
     {
-      user: 'Hola',
+      place: 'Mirador Laguna de los coipos',
       date: 'November 15, 2015',
-      thumb: 'img/ionic.png',
+      thumb: 'https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg',
       fullimage: 'img/ionic.png',
-      description: 'description',
+      description: 'Hoy pasé por el mirador y vi que había basura en los alrededores.',
       likes: 12,
-      comments: 12
+      comments: 12,
+      type: 'assertive',
+      tag: 'Aviso'
     },
     {
-      user: '2do post',
+      place: 'Playa Río de la Plata',
       date: 'November 15, 2015',
-      thumb: 'img/ionic.png',
+      thumb: 'https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg',
       fullimage: 'img/ionic.png',
-      description: 'description',
+      description: 'Hermosa la playa!',
       likes: 12,
-      comments: 12
+      comments: 12,
+      type: 'balanced',
+      tag: 'Contribución'
     },
         {
-      user: '2do post',
+      place: 'Mirador al Río de la Plata',
       date: 'November 15, 2015',
-      thumb: 'img/ionic.png',
+      thumb: 'https://s3.amazonaws.com/uifaces/faces/twitter/peterme/128.jpg',
       fullimage: 'img/ionic.png',
-      description: 'description',
+      description: 'Hoy fuimos al mirador y estaba cerrado.',
       likes: 12,
-      comments: 12
+      comments: 12,
+      type: 'assertive',
+      tag: 'Aviso'
     }
   ];
 }]);
