@@ -43,7 +43,10 @@ angular.module('map.controller', ['ionic'])
       $rootScope.mapEnabled = 0;
     });
 
-    var map = L.map('map'),
+    var map = L.map('map', {
+      center: [-58.353023, -34.606084],
+      zoom: 13
+    }),
     config = {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
       '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -77,7 +80,7 @@ angular.module('map.controller', ['ionic'])
 
     map.on('locationfound', onLocationFound);
     map.on('locationerror', onLocationError);
-
-    map.locate({setView: true, maxZoom: 16});
+    
+    map.locate({setView: false, maxZoom: 16});
 
   }]);
