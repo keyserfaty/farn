@@ -49,7 +49,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use('/', router);
 
 // job that brings markers from mapbox
-// job.getMap();
+//job.getMap();
 
 app.listen(config.site.port, function() {
   console.log('Basic API listening on port', config.site.port);

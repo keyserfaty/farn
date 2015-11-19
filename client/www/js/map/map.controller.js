@@ -17,9 +17,13 @@ angular.module('map.controller', ['ionic'])
       api.place(placeID).get()
       .then(function (place) {
         // TODO: should bring placeID from map html
-        $scope.name = place.properties.title;
-        $scope.description = place.properties.description;
-        $scope.images = place.images[0];
+        // $scope.name = place.properties.title;
+        // $scope.description = place.properties.description;
+        // $scope.images = place.images[0];
+
+        $scope.name = 'title';
+        $scope.description = 'description';
+        $scope.images = 'images';
         $scope.button = 'Add new post on this place';
         // brings modal
         $scope.modal.show();
@@ -32,43 +36,48 @@ angular.module('map.controller', ['ionic'])
 
     // Event handlers
     $scope.$on("$ionicView.enter", function(event) {
-        $rootScope.mapEnabled = 1;
+      $rootScope.mapEnabled = 1;
     });
 
     $scope.$on("$ionicView.leave", function(event) {
-        $rootScope.mapEnabled = 0;
+      $rootScope.mapEnabled = 0;
     });
 
-    api.places().getList()
-    .then(function (places) {
-        let 
-            map = L.map('map'),
-            config = {
-              attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-              '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-              'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-              mapid: 'okbel.o5mboocj',
-              accesstoken: 'pk.eyJ1Ijoib2tiZWwiLCJhIjoiY2lnbWNjbzQ3MDIxMHVubHp3dGVwbXVnaSJ9.SjPEGzzlgpvcmR_OaziFmw',
-              };
+    var map = L.map('map'),
+    config = {
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+      '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+      'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      mapid: 'okbel.o5mboocj',
+      accesstoken: 'pk.eyJ1Ijoib2tiZWwiLCJhIjoiY2lnbWNjbzQ3MDIxMHVubHp3dGVwbXVnaSJ9.SjPEGzzlgpvcmR_OaziFmw',
+    };
 
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={accesstoken}', config).addTo(map);
-        L.geoJson(places).addTo(map); 
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={accesstoken}', config).addTo(map);
 
-        function onLocationFound(e) {
-            var radius = e.accuracy / 2;
-            L.marker(e.latlng).addTo(map).bindPopup("Estás a " + radius + " metros de este punto").openPopup();
-            L.circle(e.latlng, radius).addTo(map);
-        }
+    // No tocar
+    $http.get('https://api.mapbox.com/v4/' + config.mapid + '/features.json?access_token=' + config.accesstoken)
+    .then(function(res){
+      var geojsonFeature = res.data.features;
+      L.geoJson(geojsonFeature).addTo(map).on('click', function(elem){
+        $scope.openModal();
+      })
+    }, function(err){
+      console.log('Error getting markers', err);
+    });
 
-        function onLocationError(e) {
-            console.log(e.message);
-        }
+    function onLocationFound(e) {
+      var radius = e.accuracy / 2;
+      L.marker(e.latlng).addTo(map).bindPopup("Estás a " + radius + " metros de este punto").openPopup();
+      L.circle(e.latlng, radius).addTo(map);
+    }
 
-        map.on('locationfound', onLocationFound);
-        map.on('locationerror', onLocationError);
+    function onLocationError(e) {
+      console.log(e.message);
+    }
 
-        map.locate({setView: true, maxZoom: 16});
-        
-    })
+    map.on('locationfound', onLocationFound);
+    map.on('locationerror', onLocationError);
 
-}]);
+    map.locate({setView: true, maxZoom: 16});
+
+  }]);
