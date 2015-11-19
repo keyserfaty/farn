@@ -43,25 +43,24 @@ angular.module('map.controller', ['ionic'])
       $rootScope.mapEnabled = 0;
     });
 
-    var map = L.map('map', {
-      center: [-58.353023, -34.606084],
-      zoom: 13
-    }),
-    config = {
-      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-      '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-      'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-      mapid: 'okbel.o5mboocj',
-      accesstoken: 'pk.eyJ1Ijoib2tiZWwiLCJhIjoiY2lnbWNjbzQ3MDIxMHVubHp3dGVwbXVnaSJ9.SjPEGzzlgpvcmR_OaziFmw',
-    };
+    L.mapbox.mapid = 'okbel.o5mboocj';
+    L.mapbox.accessToken = 'pk.eyJ1Ijoib2tiZWwiLCJhIjoiY2lnbWNjbzQ3MDIxMHVubHp3dGVwbXVnaSJ9.SjPEGzzlgpvcmR_OaziFmw';
 
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{mapid}/{z}/{x}/{y}.png?access_token={accesstoken}', config).addTo(map);
+    var map = L.mapbox.map('map', 'mapbox.streets', {
+      center: [-34.606852, -58.352873],
+      zoom: 13
+    });
+
+    var myLayer = L.mapbox.featureLayer().addTo(map);
+
+    map.on('locationfound', onLocationFound);
+    map.on('locationerror', onLocationError);
 
     // No tocar
-    $http.get('https://api.mapbox.com/v4/' + config.mapid + '/features.json?access_token=' + config.accesstoken)
+    $http.get('https://api.mapbox.com/v4/' + L.mapbox.mapid + '/features.json?access_token=' + L.mapbox.accessToken)
     .then(function(res){
-      var geojsonFeature = res.data.features;
-      L.geoJson(geojsonFeature).addTo(map).on('click', function(elem){
+      var geojsonFeature = res.data;
+      myLayer.setGeoJSON(geojsonFeature).on('click', function(elem){
         $scope.openModal();
       })
     }, function(err){
@@ -78,8 +77,6 @@ angular.module('map.controller', ['ionic'])
       console.log(e.message);
     }
 
-    map.on('locationfound', onLocationFound);
-    map.on('locationerror', onLocationError);
     
     map.locate({setView: false, maxZoom: 16});
 
