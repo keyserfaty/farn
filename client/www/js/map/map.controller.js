@@ -6,7 +6,7 @@ angular.module('map.controller', ['ionic'])
   function (api, $http, $rootScope, $scope, $ionicModal) {
 
     // Modal handler
-    $ionicModal.fromTemplateUrl('modalmarker.html', {
+    $ionicModal.fromTemplateUrl('../../templates/modalmarker.html', {
       scope: $scope,
       animation: 'slide-in-up'
     }).then(function (modal) {

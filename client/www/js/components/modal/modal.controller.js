@@ -5,7 +5,7 @@ angular.module('modal.controller', [])
 .controller('ModalMarkerCtrl', ['api', '$scope', '$ionicModal', 
   function(api, $scope, $ionicModal) {
 
-  $ionicModal.fromTemplateUrl('modalmarker.html', {
+  $ionicModal.fromTemplateUrl('../../../templates/modalmarker.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function (modal) {
@@ -48,7 +48,7 @@ angular.module('modal.controller', [])
 .controller('ModalPostCtrl', ['$scope', '$ionicModal', 
   function($scope, $ionicModal) {
 
-  $ionicModal.fromTemplateUrl('modalpost.html', {
+  $ionicModal.fromTemplateUrl('../../../templates/modalpost.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function (modal) {
@@ -112,7 +112,7 @@ angular.module('modal.controller', [])
 .controller('ModalCommentCtrl', ['$scope', '$ionicModal', 
   function($scope, $ionicModal) {
 
-  $ionicModal.fromTemplateUrl('modalpost.html', {
+  $ionicModal.fromTemplateUrl('../../../templates/modalpost.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function (modal) {

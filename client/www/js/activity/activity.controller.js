@@ -67,7 +67,7 @@ angular.module('activity.controller', [])
       description: 'Hoy fuimos al mirador y estaba cerrado.',
       likes: 12,
       comments: 12,
-      type: 'calm',
+      type: 'assertive',
       tag: 'Aviso'
     }
   ];

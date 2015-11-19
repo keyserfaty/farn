@@ -1,0 +1,33 @@
+<script id="modalpost.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">{{ title }}</h1>
+    </ion-header-bar>
+    <ion-content>
+
+      <div class="list">
+
+        <div class="list" ng-show="showList()">
+
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Lightsaber
+            </div>
+            <select>
+              <option ng-repeat="item in items">{{ item }}
+              </option>
+            </select>
+          </label>
+
+        </div>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">{{ action }}:</span>
+          <input type="text" placeholder="content" ng-model="description">
+        </label>
+      	<button class="button button-block button-balanced" ng-click="addPost(description, id)">{{ button }}</button>
+      </div>
+
+    </ion-content>
+  </ion-modal-view>
+</script>
