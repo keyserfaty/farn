@@ -13,3 +13,11 @@ html, body, #map {
 .hidden {
 	display: none!important;
 }
+
+ion-content {
+	background-color: #F2F2F2;
+}
+
+card {
+	background-color: white;
+}
