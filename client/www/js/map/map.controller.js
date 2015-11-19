@@ -2,8 +2,8 @@
 
 angular.module('map.controller', ['ionic'])
 
-.controller('GeoCtrl', ['api', '$http', '$rootScope', '$scope', '$ionicModal',
-  function (api, $http, $rootScope, $scope, $ionicModal) {
+.controller('GeoCtrl', ['api', '$http', '$rootScope', '$scope', '$ionicModal', '$window',
+  function (api, $http, $rootScope, $scope, $ionicModal, $window) {
 
     // Modal handler
     $ionicModal.fromTemplateUrl('../../templates/modalmarker.html', {
@@ -89,8 +89,23 @@ angular.module('map.controller', ['ionic'])
             });
           };
 
+          $scope.$on('$destroy', function() {
+            _modal.remove();
+          });
+          
+          // Execute action on hide modal
+          $scope.$on('modal.hidden', function() {
+            // Execute action
+          });
+          
+          // Execute action on remove modal
+          $scope.$on('modal.removed', function() {
+            $window.location.reload();
+          });
+
           openModal();
       })
+
     }, function(err){
       console.log('Error getting markers', err);
     });

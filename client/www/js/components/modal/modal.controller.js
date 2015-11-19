@@ -48,65 +48,65 @@ angular.module('modal.controller', [])
 .controller('ModalPostCtrl', ['$scope', '$ionicModal', 
   function($scope, $ionicModal) {
 
-  $ionicModal.fromTemplateUrl('../../../templates/modalpost.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function (modal) {
-    $scope.modal = modal;
-  });
+  // $ionicModal.fromTemplateUrl('../../../templates/modalpost.html', {
+  //   scope: $scope,
+  //   animation: 'slide-in-up'
+  // }).then(function (modal) {
+  //   $scope.modal = modal;
+  // });
   
-  $scope.addPost = function (description, tag) {
-    api.place(placeID).get()
-    .then(function (place) {
-      let currentPlace = place.posts;
+  // $scope.addPost = function (description, tag) {
+  //   api.place(placeID).get()
+  //   .then(function (place) {
+  //     let currentPlace = place.posts;
 
-      let newPost = {
-        description: description,
-        tag: tag,
-        user: false,
-        thumb: false,
-        fullimage: false,
-        likes: 0,
-        comments: [],
-        featured: false
-      };
+  //     let newPost = {
+  //       description: description,
+  //       tag: tag,
+  //       user: false,
+  //       thumb: false,
+  //       fullimage: false,
+  //       likes: 0,
+  //       comments: [],
+  //       featured: false
+  //     };
 
-      currentPlace.push(newPost);
+  //     currentPlace.push(newPost);
 
-      // PUT to '/place/:id'
-      place.put()
+  //     // PUT to '/place/:id'
+  //     place.put()
       
-    })
-  };
+  //   })
+  // };
 
-  $scope.openPostModal = function() {
-    $scope.title = 'Add new post to this place';
-    $scope.button = 'Save post';
-    $scope.action = 'Content';
-    $scope.showList = function () { return true; }
-    $scope.items = ['Alerta', 'Actividad', 'Comentario', 'Cosa'];
+  // $scope.openPostModal = function() {
+  //   $scope.title = 'Add new post to this place';
+  //   $scope.button = 'Save post';
+  //   $scope.action = 'Content';
+  //   $scope.showList = function () { return true; }
+  //   $scope.items = ['Alerta', 'Actividad', 'Comentario', 'Cosa'];
 
-    $scope.modal.show();
-  };
+  //   $scope.modal.show();
+  // };
   
   $scope.closeModal = function() {
-    $scope.modal.hide();
+    $scope._modal.hide();
   };
   
-  //Cleanup the modal when we're done with it!
-  $scope.$on('$destroy', function() {
-    $scope.modal.remove();
-  });
+  // //Cleanup the modal when we're done with it!
+  // $scope.$on('$destroy', function() {
+  //   $scope.modal.remove();
+  // });
   
-  // Execute action on hide modal
-  $scope.$on('modal.hidden', function() {
-    // Execute action
-  });
+  // // Execute action on hide modal
+  // $scope.$on('modal.hidden', function() {
+  //   // Execute action
+  // });
   
-  // Execute action on remove modal
-  $scope.$on('modal.removed', function() {
-    // Execute action
-  });
+  // // Execute action on remove modal
+  // $scope.$on('modal.removed', function() {
+  //   // Execute action
+  // });
 }])
 
 .controller('ModalCommentCtrl', ['$scope', '$ionicModal', 
