@@ -101,12 +101,12 @@ angular.module('map.controller', ['ionic'])
           $scope.$on('$destroy', function() {
             _modal.remove();
           });
-          
+
           // Execute action on hide modal
           $scope.$on('modal.hidden', function() {
             // Execute action
           });
-          
+
           // Execute action on remove modal
           $scope.$on('modal.removed', function() {
             $window.location.reload();
@@ -129,7 +129,7 @@ angular.module('map.controller', ['ionic'])
       console.log(e.message);
     }
 
-    
+
     map.locate({setView: false, maxZoom: 16});
 
   }]);
