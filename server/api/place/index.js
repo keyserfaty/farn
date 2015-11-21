@@ -2,9 +2,9 @@
 
 const
   express = require('express'),
-  router =  express.Router();
+  router = express.Router();
 
-const 
+const
   place = require('./place.controller');
 
 router.get('/', place.list);

@@ -5,7 +5,7 @@ const
   config = require('./config');
 
 try {
-  mongoose.connect('mongodb://'+ config.mongodb.server +'/api', function (err, res) {
+  mongoose.connect('mongodb://' + config.mongodb.server + '/api', function (err, res) {
     if (err) throw err;
     console.log('Connected to MongoDB!');
   });

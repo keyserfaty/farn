@@ -6,9 +6,8 @@ module.exports = {
   site: {
     port: 3000,
   },
-  options: {
-  },
+  options: {},
   secrets: {
-  	session: 'test-secret'
+    session: 'test-secret'
   }
 };

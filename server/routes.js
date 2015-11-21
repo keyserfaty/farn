@@ -2,9 +2,10 @@
 
 const
   express = require('express'),
-  router =  express.Router(),
+  router = express.Router(),
   passport = require('passport'),
-  FacebookStrategy = require('passport-facebook').Strategy;
+  FacebookStrategy = require('passport-facebook')
+  .Strategy;
 
 router.use('/api/auth', require('./api/auth'));
 

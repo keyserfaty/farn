@@ -25,7 +25,11 @@ const
     posts: [{
       postID: String,
       description: String,
-      tag: { type: String, default: '', trim: true },
+      tag: {
+        type: String,
+        default: '',
+        trim: true
+      },
       user: String,
       thumb: String,
       fullimage: String,
@@ -38,7 +42,7 @@ const
 // PlaceSchema.path('tag').required(true, 'Field tags cannot be blank');
 
 PlaceSchema.methods = {
-  verifyPlace: function() {
+  verifyPlace: function () {
     // TODO
     return true;
   }
@@ -48,11 +52,19 @@ PlaceSchema.statics = {
   list: function (criteria) {
     let query;
 
-    if (criteria.showHidden == 1){
-      query = this.find().where({hidden: 1}).exec();
+    if (criteria.showHidden == 1) {
+      query = this.find()
+        .where({
+          hidden: 1
+        })
+        .exec();
     } else {
-      query = this.find().where({hidden: 0}).exec();
-    } 
+      query = this.find()
+        .where({
+          hidden: 0
+        })
+        .exec();
+    }
 
     return query;
   },
@@ -61,16 +73,21 @@ PlaceSchema.statics = {
     return this.collection.insert(collection, callback);
   },
   get: function (placeID) {
-    return this.findOne({ _id: placeID }).exec();
+    return this.findOne({
+        _id: placeID
+      })
+      .exec();
   },
   add: function (place) {
     return place.save();
   },
   del: function (placeID) {
-    return this.findByIdAndRemove(placeID); 
+    return this.findByIdAndRemove(placeID);
   },
   edit: function (placeID, attributes) {
-    return this.findOneAndUpdate({ _id: placeID }, attributes);
+    return this.findOneAndUpdate({
+      _id: placeID
+    }, attributes);
   }
 };
 
